@@ -17,7 +17,7 @@ Before using the SceytChat Android SDK, you will need the following:
 - Java version 8 or later
 - Android Studio 4.1 or later
 
-## Installataion
+## Installation
 
 1. Add the following line to the `build.gradle` file for your project:
 
@@ -131,6 +131,6 @@ dependencies {
     })
 ```
 
-##License
+## License
 
 See the [LICENSE](LICENSE) file for details.
