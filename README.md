@@ -73,11 +73,11 @@ dependencies {
 ```
 2. After calling the setup method on the ChatClient object, you can register a ClientListener using the addClientListener method. 
    The ClientListener is notified when certain events occur, such as when the connection to Sceyt is successful, 
-   where "tag" is used to identify the listener.
+   where "listenerName" is used to identify the listener.
    For example:
 
 ```kotlin
-    chatClient.addClientListener("tag", object : ClientListener {
+    chatClient.addClientListener("listenerName", object : ClientListener {
     
         override fun onChangedConnectStatus(connectState: Types.ConnectState, status: Status) {
             // Called when the connection status changes.
