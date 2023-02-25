@@ -71,8 +71,8 @@ dependencies {
         }
     }
 ```
-2. After calling the setup method on the ChatClient object, you can register a ClientListener using the addClientListener method. 
-   The ClientListener is notified when certain events occur, such as when the connection to Sceyt is successful, 
+2. After calling the setup method on the ChatClient object, you can register a ClientListener ro be notified when certain events occur,
+   such as when the connection to Sceyt is successful, 
    where "listenerName" is used to identify the listener.
    For example:
 
