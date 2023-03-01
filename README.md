@@ -7,6 +7,7 @@ The SceytChat Android SDK provides developers with a powerful and flexible chat 
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
+* [Proguard](#proguard)
 * [License](#license)
 
 ## Requirements
@@ -130,6 +131,21 @@ dependencies {
         }
     })
 ```
+
+## Proguard
+
+If you are using Proguard with this library, make sure to add the following rules to your proguard-rules file:
+
+```python
+# Keep all necessary classes in 'com.sceyt.chat' package and its subpackages
+
+-keep class com.sceyt.chat.models.** { *; }
+-keep class com.sceyt.chat.wrapper.** { *; }
+-keep class com.sceyt.chat.callback.** { *; }
+```
+
+These rules will ensure that all classes in the specified packages and their sub-packages are not obfuscated by Proguard.
+
 
 ## License
 
