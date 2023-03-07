@@ -35,7 +35,7 @@ This will enable your project to use libraries from Maven Central.
 
 ```python
 dependencies {
-    implementation 'com.sceyt:sceyt-chat-android-sdk:1.0.0'
+    implementation 'com.sceyt:sceyt-chat-android-sdk:1.0.2'
 }
 ```
 
@@ -72,15 +72,14 @@ dependencies {
         }
     }
 ```
-2. After calling the setup method on the ChatClient object, you can register a ClientListener to be notified when certain events occur,
+2. After initializing the ChatClient, you can register a ClientListener to be notified when certain events occur,
    such as when the connection to Sceyt is successful, 
    where "listenerName" is used to identify the listener.
-   For example:
 
 ```kotlin
     chatClient.addClientListener("listenerName", object : ClientListener {
 
-        override fun onConnectionStateChanged(connectionState: ConnectionState, exception: SceytException?) {
+        override fun onConnectionStateChanged(state: ConnectionState, exception: SceytException?) {
             // Called when the connection state changes.
         }
     
@@ -93,11 +92,21 @@ dependencies {
         }
     })
 ```
-3. You can then use the connect method of the ChatClient instance to connect to the Sceyt chat server, where the token is a JWT token
+3. You can then use the connect method of the ChatClient instance to connect to the Sceyt, where the token is a JWT token
    signed with your application's private key. Sceyt verifies the token by the public key of the application.
 
 ```kotlin
-  chatClient.connect(token)
+    class MyApplication : Application() {
+
+      override fun onCreate() {
+         super.onCreate()
+         
+         ...
+         
+         chatClient.connect(token)         
+      }
+}
+
 ```
 
 4. After connecting to Sceyt, you can create, for example,
