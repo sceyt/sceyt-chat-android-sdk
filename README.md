@@ -68,7 +68,7 @@ dependencies {
             val apiUrl = "https://us-ohio-api.sceyt.com" // replace with your Sceyt application API URL
             val appId = "8lwox2ge93" // replace with your Sceyt application ID
     
-            var chatClient = ChatClient.setup(apiUrl, appId, applicationContext)
+            var chatClient = ChatClient.initialize(apiUrl, appId, applicationContext)
         }
     }
 ```
@@ -79,9 +79,9 @@ dependencies {
 
 ```kotlin
     chatClient.addClientListener("listenerName", object : ClientListener {
-    
-        override fun onChangedConnectStatus(connectState: Types.ConnectState, status: Status) {
-            // Called when the connection status changes.
+
+        override fun onConnectionStateChanged(connectionState: ConnectionState, exception: SceytException?) {
+            // Called when the connection state changes.
         }
     
         override fun onTokenWillExpire(expireTime: Long) {
