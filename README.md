@@ -110,22 +110,26 @@ dependencies {
 ```
 
 4. After connecting to Sceyt, you can create, for example,
-   a direct channel with a user using the CreateDirectChannelRequest builder and a User object with the user's ID.
-   Specify a ChannelCallback to handle the results. Here's an example:
+   a private group channel with members "bob" and "alice" using the CreatePrivateChannelRequest builder.
+   Specify a ChannelCallback to handle the results.
 
 ```kotlin    
-    val userId = "someUserId"
-    
-    CreateDirectChannelRequest(User(userId)).execute(object : ChannelCallback {
-    
-        override fun onResult(channel: Channel) {
-            // The channel has been created successfully.
-        }
-    
-        override fun onError(e: SceytException) {
-            // An error occurred while creating the channel.
-        }
-    })
+     val roleName = "participant"
+
+     val memberAlice = Member.Builder("alice").roleName(roleName).build()
+     val memberBob = Member.Builder("bob").roleName(roleName).build()
+
+     CreatePrivateChannelRequest().withSubject("Daily Meeting")
+         .withMembers(mutableListOf(memberAlice, memberBob))
+         .execute(object : ChannelCallback {
+             override fun onResult(channel: Channel) {
+                 // The channel has been created successfully.
+             }
+
+             override fun onError(exception: SceytException) {
+                 // An error occurred while creating the channel.
+             }
+         })
 ```
 
 5. Now you can send a message to the Created channel using its ID, like this:
@@ -143,7 +147,7 @@ dependencies {
 
 ## Proguard
 
-If you are using Proguard with this library, make sure to add the following rules to your proguard-rules file:
+If you are using Proguard in your application, make sure to add the following rules to your proguard-rules file:
 
 ```python
 # Keep all necessary classes in 'com.sceyt.chat' package and its subpackages
